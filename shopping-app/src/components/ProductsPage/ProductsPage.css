@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+.products-page {
+  background: linear-gradient(180deg, #0c0020, #220044);
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem 4rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+  justify-content: center;
+  align-items: stretch;
+}
+
+@media screen and (max-width: 768px) {
+  .products-page {
+    padding: 1rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+}

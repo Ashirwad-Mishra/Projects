@@ -2,12 +2,18 @@
 import Header from "../Header/Header";
 import ProductCard from "../ProductCard/ProductCard";
 import Footer from "../Footer/Footer";
-
+import "./ProductsPage.css"; 
 const ProductsPage = () => {
   const products = [
-    // { id: 1, name: "Product 1", price: 19.99, image: "" },
-    // { id: 2, name: "Product 2", price: 24.99, image: "" },
-    // { id: 3, name: "Product 3", price: 15.99, image: "product3.jpg" },
+    {
+      "id": 1,
+      "name": "Cup",
+      "price": "₹450",
+      "image": "images/cup.jpeg"
+    }
+,
+    { id: 2, name: "Product 2", price: 24.99, image: "" },
+    { id: 3, name: "Product 3", price: 15.99, image: "product3.jpg" },
     // // Add more dummy data
   ];
 

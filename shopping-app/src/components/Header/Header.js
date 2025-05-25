@@ -1,7 +1,7 @@
 // components/Header.js
 import { Link } from "react-router-dom";
 import { FiShoppingCart, FiSearch, FiUser } from "react-icons/fi";
-
+import "./Header.css"; // Assuming you have a CSS file for styling
 export default function Header() 
 {
   return (

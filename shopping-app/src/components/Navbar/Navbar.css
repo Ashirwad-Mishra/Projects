@@ -1,0 +1,35 @@
+/* Navbar Links */
+.navbar-dark .nav-item .nav-link {
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Navbar Hover Effects */
+.navbar-dark .nav-item .nav-link:hover {
+  background: linear-gradient(45deg, #ff7e5f, #feb47b); /* Vibrant gradient */
+  color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(255, 126, 95, 0.3);
+}
+
+/* Active Link */
+.navbar-dark .nav-item .nav-link.active {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  box-shadow: 0 4px 10px rgba(106, 17, 203, 0.3);
+}
+
+/* FontAwesome List Item */
+.fa-li {
+  position: relative;
+  left: 0;
+  color: #ffc107;
+  font-size: 1.2rem;
+}
+
+/* Smooth Transitions */
+.navbar-dark .nav-item .nav-link,
+.fa-li {
+  transition: all 0.3s ease-in-out;
+}

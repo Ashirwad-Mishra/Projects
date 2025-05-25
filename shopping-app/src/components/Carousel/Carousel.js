@@ -1,6 +1,6 @@
 // components/Carousel/Carousel.js
 import { useState, useEffect } from "react";
-
+import "./Carousel.css"; 
 export default function Carousel({ images }) {
   const [current, setCurrent] = useState(0);
 

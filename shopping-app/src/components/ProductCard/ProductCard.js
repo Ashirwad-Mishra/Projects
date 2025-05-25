@@ -1,4 +1,5 @@
 // components/ProductCard.js
+import './ProductCard.css'
 export default function ProductCard({ product }) {
   return (
     <div className="product-card">
