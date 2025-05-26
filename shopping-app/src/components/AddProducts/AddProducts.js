@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './AddProducts.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -8,25 +10,42 @@ const AddProduct = () => {
     description: '',
     category: 'Electronics'
   });
-  const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const navigate = useNavigate();
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Create product object with image URL (we'll handle this differently)
+
+    let base64Image = '/placeholder.jpg'; // fallback
+    if (imageFile) {
+      try {
+        base64Image = await convertToBase64(imageFile);
+      } catch (err) {
+        console.error("Image conversion failed:", err);
+      }
+    }
+
     const newProduct = {
       ...product,
-      id: Date.now(), // Simple unique ID
+      id: `user-${Date.now()}`,
       price: parseFloat(product.price),
-      image: image ? URL.createObjectURL(image) : '/placeholder.jpg'
+      image: base64Image,
+      date: Date.now()
     };
 
-    // Save to local JSON file (simulated)
-    const existingProducts = JSON.parse(localStorage.getItem('products') || []);
+    const existingProducts = JSON.parse(localStorage.getItem('products') || '[]');
     const updatedProducts = [...existingProducts, newProduct];
     localStorage.setItem('products', JSON.stringify(updatedProducts));
-    
+
     alert('Product added successfully!');
     navigate('/shop');
   };
@@ -89,7 +108,7 @@ const AddProduct = () => {
             type="file" 
             className="form-control"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => setImageFile(e.target.files[0])}
           />
         </div>
         

@@ -2,10 +2,16 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home';
-import Shop from './components/Shop/Shop';
-// import UpiWallet from './UpiWallet';
-// import Entertainment from './Entertainment';
-// import Orders from './Orders';
+import ShoppingRoutes from './components/Routes/ShoppingRoutes';
+// import PaymentRoutes from './routes/PaymentRoutes';
+// import BookingRoutes from './routes/BookingRoutes';
+// import BankingRoutes from './routes/BankingRoutes';
+
+const NotFound = () => (
+  <div style={{ padding: '2rem', textAlign: 'center' }}>
+    <h2>404 - Page Not Found</h2>
+  </div>
+);
 
 function App() {
   return (
@@ -13,13 +19,16 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
-        {/* <Route path="/upi-wallet" element={<UpiWallet />} /> */}
-        {/* <Route path="/entertainment" element={<Entertainment />} /> */}
-        {/* <Route path="/orders" element={<Orders />} /> */}
-        {/* <Route path="/profile" element={<div>Profile Page</div>} /> */}
-        {/* <Route path="/wallet" element={<div>Wallet Page</div>} /> */}
-        {/* <Route path="/settings" element={<div>Settings Page</div>} /> */}
+
+        {/* Shopping Module */}
+        <Route path="/*" element={<ShoppingRoutes />} />
+
+        {/* You can add more domain modules here */}
+        {/* <Route path="/payments/*" element={<PaymentRoutes />} /> */}
+        {/* <Route path="/booking/*" element={<BookingRoutes />} /> */}
+        {/* <Route path="/banking/*" element={<BankingRoutes />} /> */}
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
