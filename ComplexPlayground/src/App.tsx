@@ -19,9 +19,10 @@ function App() {
     const real = parseFloat(value.real);
     const imag = parseFloat(value.imag);
     
-    if (isNaN(real) {
+    if (isNaN(real)) {
       setError("Please enter a valid number for the real part");
       return null;
+      
     }
     
     if (isNaN(imag)) {

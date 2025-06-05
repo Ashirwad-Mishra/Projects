@@ -40,3 +40,72 @@
 .read-the-docs {
   color: #888;
 }
+/* Card Container */
+.visualization-card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Header */
+.visualization-header {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Plane and points container */
+.visualization-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Grid for points */
+.points-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  max-width: 640px;
+}
+
+@media (min-width: 768px) {
+  .points-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Each point */
+.point-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.point-label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.point-value {
+  font-family: monospace;
+  color: #1f2937;
+}
+
+svg.point-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}

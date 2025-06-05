@@ -1,5 +1,5 @@
 import React from 'react';
-import { Complex } from '../lib/complex';
+import { Complex } from './lib/complex';
 import { ComplexInput } from './ui/ComplexInput';
 import { Button } from './ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/Card';
