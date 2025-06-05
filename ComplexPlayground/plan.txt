@@ -1,0 +1,301 @@
+We are going to create a complex number calculator with visualization.
+
+Steps:
+
+1. We'll create a `Complex` class to handle complex number operations (addition, subtraction, multiplication, division).
+
+2. We'll have a form for the user to input two complex numbers (each with real and imaginary parts) and select an operation.
+
+3. We'll use state to manage the inputs, operation, result, and any error messages.
+
+4. We'll display the result in a user-friendly manner (as a complex number).
+
+5. We'll plot the complex numbers (both inputs and the result) on a complex plane (Argand diagram) using a simple canvas or SVG.
+
+6. We'll use Shadcn components for inputs, buttons, and alerts. We'll style with Tailwind CSS.
+
+7. We'll structure the code in a modular way: separate components for input, operation buttons, and visualization.
+
+8. We'll handle errors (like division by zero) and show error messages.
+
+9. We'll write unit tests for the Complex class and possibly for the React components (using testing-library).
+
+Let's start by creating the Complex class in a separate file.
+
+However, note: the problem says to write in one file for simplicity? But the requirement says modular.
+
+We can do one file for now, but in a real project we would split.
+
+Since we are in one file, we'll define the Complex class inside.
+
+Alternatively, we can create a separate file and import it? But the requirement is to have one file?
+
+The problem says "The code should be modular and organized", meaning we can split into multiple files?
+
+But the instruction says "create a simple React application" and the starting point is one file.
+
+We are going to split into multiple files for better organization. However, the problem says to put the answer in a single code block?
+
+So we have two options:
+
+Option 1: Write everything in one file (App.tsx) including the Complex class and components.
+
+Option 2: Split into multiple files and then combine the code in one block?
+
+The instruction says: "The code should be written in TypeScript and follow best practices for React development."
+
+Since the problem says "create a simple React application", we can start with one file and then refactor if needed.
+
+However, note: the problem says "The application should be easy to extend in the future". So we should design with modularity.
+
+We'll create:
+
+- A `Complex` class in a separate module (but in the same file for now) or we can define it in the same file.
+
+Considering that we are to show the entire code, we'll put the Complex class in the same file at the top.
+
+But note: the requirement says "The application should include unit tests". We can write tests in a separate file?
+
+However, we are to show the entire code in one block? We cannot include test files?
+
+So we'll write the core logic (Complex class) and then we can write unit tests for it in a separate block?
+
+But the problem says: "The application should include unit tests for the core functionality".
+
+We are to write the tests in the same file? That is not typical.
+
+Since the problem does not specify, we will write the Complex class and then the tests for it in a separate file?
+
+But we are only to write the App code?
+
+Let me re-read: "The application should include unit tests" - meaning we should write tests, but the problem doesn't require to show them?
+
+However, the instruction says: "The code should be written in TypeScript" and "follow best practices".
+
+Since we are to show one file, we will not include tests in this file. We assume tests are in separate files (like `Complex.test.ts`).
+
+Now, let's design:
+
+Components:
+
+- App: main component, holds state and the Complex class.
+
+- ComplexNumberInput: a component for inputting a complex number (two inputs: real and imaginary).
+
+- OperationButtons: buttons for operations (+, -, *, /).
+
+- ResultDisplay: to show the result and any error.
+
+- ComplexPlane: a component to draw the complex plane and plot the complex numbers.
+
+We'll use state to manage:
+
+- complex1: { real: number, imag: number }
+
+- complex2: { real: number, imag: number }
+
+- operation: string (one of '+', '-', '*', '/')
+
+- result: { real: number, imag: number } | null
+
+- error: string | null
+
+We'll use Shadcn components. We need to install Shadcn? But in the code we can use the components by importing?
+
+However, the problem says we are to write the code, so we can assume that the setup is already done?
+
+But we are to write the entire code in one file? Then we cannot use Shadcn without the setup?
+
+Alternatively, we can use basic inputs and style with Tailwind? Or we can use Shadcn components by including their code?
+
+Since we cannot set up Shadcn in one file, we will use basic HTML elements and style with Tailwind classes to mimic a clean UI.
+
+We'll write the Complex class first.
+
+Complex class:
+
+- properties: real, imag
+
+- methods:
+
+add(c: Complex): Complex
+
+subtract(c: Complex): Complex
+
+multiply(c: Complex): Complex
+
+divide(c: Complex): Complex
+
+toString(): string
+
+We'll also have a static method for parsing? Or just use the constructor.
+
+We'll also have a method to get the magnitude? For plotting we need the coordinates.
+
+Let's write the Complex class.
+
+Note: Division by zero: when divisor is (0,0) we throw an error.
+
+Now, for the visualization: we'll create a canvas to draw a complex plane and then plot the points.
+
+Steps for ComplexPlane:
+
+- We'll draw a Cartesian plane with origin at the center of the canvas.
+
+- We'll plot the two input complex numbers and the result (if any) with different colors.
+
+- We'll handle resizing? We can make it responsive with relative units.
+
+We'll use a canvas and draw the axes and points.
+
+We'll create a component that takes an array of points (each point is { real, imag, label, color }) and draws them.
+
+We'll set a fixed scale? Or we can adjust the scale to fit all points.
+
+We'll set the scale so that the maximum absolute value of real or imaginary (among the points) is within the view.
+
+We'll create a function to convert from complex coordinates to canvas coordinates.
+
+Implementation of ComplexPlane:
+
+Props: points: Array<{ real: number; imag: number; label: string; color: string }>
+
+We'll use a canvas and draw:
+
+- Axes (x and y)
+
+- Grid lines?
+
+- Points as circles with labels.
+
+We'll use a useEffect to draw when the points change.
+
+We'll set the canvas size to be responsive (100% width and a fixed height?).
+
+Since we are using Tailwind, we can set:
+
+<canvas className="w-full h-64 border rounded-lg" ... />
+
+Let's code step by step.
+
+We'll break down the App component:
+
+State:
+
+- complex1: { real: string, imag: string } -> we use string for input to allow negative and decimal
+
+- complex2: { real: string, imag: string }
+
+- operation: string (initially '+')
+
+- result: Complex | null
+
+- error: string | null
+
+We'll have a function to handle input change for complex1 and complex2.
+
+We'll have a function to perform the operation:
+
+try {
+
+const c1 = new Complex(parseFloat(complex1.real), parseFloat(complex1.imag));
+
+const c2 = new Complex(parseFloat(complex2.real), parseFloat(complex2.imag));
+
+let res;
+
+switch (operation) {
+
+case '+': res = c1.add(c2); break;
+
+case '-': res = c1.subtract(c2); break;
+
+case '*': res = c1.multiply(c2); break;
+
+case '/': res = c1.divide(c2); break;
+
+default: throw new Error('Invalid operation');
+
+}
+
+setResult(res);
+
+setError(null);
+
+} catch (err) {
+
+setError(err.message);
+
+setResult(null);
+
+}
+
+We'll create a form with two ComplexNumberInput components (each has two inputs: real and imag).
+
+We'll create buttons for the operations.
+
+We'll display the result and error.
+
+We'll also show the ComplexPlane with the points.
+
+Points for the plane:
+
+[
+
+{ real: c1.real, imag: c1.imag, label: 'A', color: 'red' },
+
+{ real: c2.real, imag: c2.imag, label: 'B', color: 'blue' },
+
+...(result ? [{ real: result.real, imag: result.imag, label: 'Result', color: 'green' }] : [])
+
+]
+
+We'll create a reset button to clear all.
+
+Let's write the code.
+
+Note: We are using TypeScript, so we'll define types.
+
+We'll define:
+
+type ComplexNumber = {
+
+real: number;
+
+imag: number;
+
+};
+
+But the Complex class already has these.
+
+For the input state, we use:
+
+complex1: { real: string; imag: string; }
+
+Because we want to let the user type freely (including '-' and '.').
+
+We'll create the Complex class.
+
+Let's code the Complex class first.
+
+We'll also note: we are to use functional components and hooks.
+
+We'll use useRef for the canvas? Or we can use a state for the context? We'll use a ref.
+
+Now, let's write the entire code in one file.
+
+We'll structure:
+
+- Complex class
+
+- ComplexPlane component (as a function component)
+
+- ComplexNumberInput component (for one complex number input)
+
+- App component
+
+We'll also write some Tailwind classes for styling.
+
+We assume Tailwind is set up in the project.
+
+Let's go.
